@@ -1,12 +1,13 @@
 import React from "react";
-import RegisterForm from "./RegisterForm";
+import RegisterForm from "./pages/RegisterForm";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import NotFound from "./Error";
 import Login from "./auth/Login";
 import Forgotpassword from "./auth/ForgotPassword";
 import Newpassword from "./auth/NewPassword";
-import Profile from "./components/Profile";
+
 import "./index.css";
+import Profile from "./pages/Profile";
 
 const Router = () => {
   const router = createBrowserRouter([

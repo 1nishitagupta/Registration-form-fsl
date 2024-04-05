@@ -8,21 +8,21 @@ import {
   Select,
   Switch,
 } from "@mui/material";
-import HeadingBox from "./components/HeadingBox";
+import HeadingBox from "../components/HeadingBox";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import ForwardedTextInput from "./components/StyledTextfield";
+import ForwardedTextInput from "../components/StyledTextfield";
 import {
   analyticsOptions,
   coursesData,
   educationOptions,
   genderOptions,
-} from "./Constant";
-import ConfirmationModal from "./components/Modal";
-import ControlledRadioButtonsGroup from "./components/StyledRadioBtn";
-import InputFile from "./components/InputFile";
+} from "../Constant";
+import ConfirmationModal from "../components/Modal";
+import ControlledRadioButtonsGroup from "../components/StyledRadioBtn";
+import InputFile from "../components/InputFile";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import StyledButton from "./components/StyledButton";
+import StyledButton from "../components/StyledButton";
 
 const RegisterForm = () => {
   const [currentSection, setCurrentSection] = useState(1);
