@@ -1,36 +1,50 @@
-import { Upload } from "@mui/icons-material";
-import { Box, Button, TextField } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
 const InputFile = () => {
-  const [aadharCardFront, setaadharCardFront] = useState(null);
-  const [aadharCardBack, setaadharCardBack] = useState(null);
+  const [aadharCardFront, setAadharCardFront] = useState(null);
+  const [aadharCardBack, setAadharCardBack] = useState(null);
+  const [fileUrlFront, setFileUrlFront] = useState("");
+  const [fileUrlBack, setFileUrlBack] = useState("");
+  const baseUrl = "http://localhost:5173/";
+  const uploadEndpoint = "http://localhost:8080/upload";
+  console.log(fileUrlFront, fileUrlBack, "11");
 
   const handleFileChange = (e) => {
-    setaadharCardFront(e.target.files[0]);
+    setAadharCardFront(e.target.files[0]);
+    setFileUrlFront(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleFileTwoChange = (e) => {
-    setaadharCardBack(e.target.files[0]);
+    setAadharCardBack(e.target.files[0]);
+    setFileUrlBack(URL.createObjectURL(e.target.files[0]));
   };
 
   const uploadFiles = () => {
-    const formData = new FormData();
-    formData.append("file", aadharCardFront); // Append first file with key "file"
-    formData.append("file", aadharCardBack); // Append second file with the same key "file"
+    if (aadharCardFront && aadharCardBack) {
+      const formData = new FormData();
+      formData.append("file", aadharCardFront);
+      formData.append("file", aadharCardBack);
 
-    fetch(`http://localhost:8080/upload`, {
-      method: "POST",
-      mode: "cors",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data); // Handle response
+      fetch(uploadEndpoint, {
+        method: "POST",
+        body: formData,
       })
-      .catch((err) => console.log(err)); // Handle errors
-  };
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
 
+          if (Array.isArray(data.filePaths)) {
+            setFileUrlFront(baseUrl + data.filePaths[0].replace(/\\/g, "/"));
+            setFileUrlBack(baseUrl + data.filePaths[1].replace(/\\/g, "/"));
+          }
+        })
+        .catch((err) => console.log(err));
+    } else {
+      alert("fill all the fields");
+    }
+  };
+  console.log(fileUrlFront, fileUrlBack, "48");
   return (
     <Box
       sx={{
@@ -53,12 +67,21 @@ const InputFile = () => {
       <Box
         sx={{ display: "flex", justifyContent: "space-between", gap: "30px" }}
       >
-        <Box
-          sx={{ display: "flex", justifyContent: "space-between", gap: "10px" }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <TextField type="file" onChange={handleFileChange} />
-          <TextField type="file" onChange={handleFileTwoChange} />
+          {fileUrlFront && (
+            <img src={fileUrlFront} width={"300px"} height={"auto"} alt="" />
+          )}
         </Box>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <TextField type="file" onChange={handleFileTwoChange} />
+          {fileUrlBack && (
+            <img src={fileUrlBack} width={"300px"} height={"auto"} alt="" />
+          )}
+        </Box>
+        {/* {aadharCardFront === null && aadharCardBack === null 
+          <Typography color={"red"}> Fill the fields</Typography>
+        } */}
         <Button onClick={uploadFiles}>Upload</Button>
       </Box>
     </Box>

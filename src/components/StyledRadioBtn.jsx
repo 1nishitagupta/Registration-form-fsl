@@ -25,7 +25,7 @@ const ControlledRadioButtonsGroup = ({
   } = useController({ name, control, defaultValue, rules });
 
   return (
-    <FormControl error={error}>
+    <FormControl>
       {label && (
         <label
           // htmlFor={id}
@@ -46,7 +46,7 @@ const ControlledRadioButtonsGroup = ({
         onBlur={onBlur}
         sx={{ display: "flex", justifyContent: "flex-start" }}
       >
-        <Box sx={{ display: "flex", justifyContent: "flex-startr" }}>
+        <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
           {data?.map((item, index) => {
             return (
               <FormControlLabel
@@ -59,7 +59,9 @@ const ControlledRadioButtonsGroup = ({
           })}
         </Box>
       </RadioGroup>
-      <FormHelperText>{error?.message}</FormHelperText>
+      <FormHelperText sx={{ color: "#d32f2f" }}>
+        {error?.message}
+      </FormHelperText>
     </FormControl>
   );
 };

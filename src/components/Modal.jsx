@@ -3,8 +3,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Checkbox } from "@mui/material";
+import { Checkbox, IconButton } from "@mui/material";
 import { useEffect } from "react";
+import CloseIcon from "@mui/icons-material/Close";
 
 const style = {
   position: "absolute",
@@ -15,7 +16,7 @@ const style = {
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
+  p: 2,
 };
 
 export default function ConfirmationModal({
@@ -39,7 +40,6 @@ export default function ConfirmationModal({
 
   return (
     <div>
-      {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -47,26 +47,34 @@ export default function ConfirmationModal({
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-            borderBottom={"1px solid grey"}
+          <Box
+            className={
+              "flex justify-between items-center border-b-2 border-[#00000094]"
+            }
           >
-            Term & Conditions
-          </Typography>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            You agree to the following:
-          </Typography>
-          <ul>
-            <li>You have understood the course content.</li>
-            <li>You have understood the course duration.</li>
-            <li>
-              You have cleared all your doubts regarding the course, the content
-              and the duration and have no problem with it.
-            </li>
-            <li>Fees once paid is not refundable.</li>
-          </ul>
+            <Typography id="modal-modal-title" variant="h5" component="h2">
+              Term & Conditions
+            </Typography>
+            <IconButton onClick={handleClose}>
+              {" "}
+              <CloseIcon fontSize="large" />
+            </IconButton>
+          </Box>
+          <Box className="py-2 px-4">
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              You agree to the following:
+            </Typography>
+            <ul style={{ listStyleType: "disc" }}>
+              <li> You have understood the course content.</li>
+              <li>You have understood the course duration.</li>
+              <li>
+                You have cleared all your doubts regarding the course, the
+                content and the duration and have no problem with it.
+              </li>
+              <li>Fees once paid is not refundable.</li>
+            </ul>
+          </Box>
+
           <Box className="flex justify-start items-center">
             <Checkbox
               checked={confirmation}

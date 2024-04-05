@@ -5,7 +5,7 @@ const StyledButton = ({ label, onClick, type ,width}) => {
   return (
     <Button
       sx={{
-        backgroundColor: "#007bff",
+        backgroundColor: "#f16b3b",
         color: "white",
         padding: "15px 10px",
         fontSize: "16px",
@@ -13,7 +13,7 @@ const StyledButton = ({ label, onClick, type ,width}) => {
         fontWeight: "700",
         width:{width},
         "&:hover": {
-          backgroundColor: "#007bff",
+          backgroundColor: "#f16b3b",
           color: "white",
         },
       }}

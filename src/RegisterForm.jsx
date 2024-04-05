@@ -244,11 +244,11 @@ const RegisterForm = () => {
                 })}
               />
               <ForwardedTextInput
-                label="Parent / Guardian / Spouse Phoneno"
+                label="Parent / Guardian / Spouse Phone number"
                 type="number"
                 error={errors?.parentNo ? true : false}
                 helperText={errors?.parentNo?.message}
-                placeholder="Parent / Guardian / Spouse Phoneno"
+                placeholder="Parent / Guardian / Spouse Phone number"
                 isRequired
                 {...register("parentNo", {
                   required: "parentNo is Required",
@@ -292,7 +292,7 @@ const RegisterForm = () => {
                   type="text"
                   error={errors?.localAddress ? true : false}
                   helperText={errors?.localAddress?.message}
-                  placeholder="localAddress"
+                  placeholder="LocalAddress"
                   disabled={
                     watch("localAddress")?.length > 0 &&
                     watch("localAddress") === watch("permanentAddress")
@@ -304,7 +304,7 @@ const RegisterForm = () => {
                 />
                 <FormControlLabel
                   defaultValue={false}
-                  disabled={!watch("localAddress")}
+                  disabled={!watch("local Address")}
                   control={<Switch checked={permanentAddress} />}
                   label="same as local"
                   onChange={handleAddress}
@@ -314,7 +314,7 @@ const RegisterForm = () => {
                   type="text"
                   error={errors?.permanentAddress ? true : false}
                   helperText={errors?.permanentAddress?.message}
-                  placeholder="permanentAddress"
+                  placeholder="Permanent Address"
                   isRequired
                   {...register("permanentAddress", {
                     required: "permanentAddress is Required",
@@ -353,7 +353,7 @@ const RegisterForm = () => {
                   heading={"Educational Details"}
                 />
                 <ControlledRadioButtonsGroup
-                  label="Are u a"
+                  label="Are You a"
                   name="eduDesignation"
                   defaultValue={educationOptions[0].value}
                   data={educationOptions}
@@ -395,7 +395,7 @@ const RegisterForm = () => {
                     />
                   </>
                 )}
-                {methods.watch("eduDesignation") === "workingProfessionals" && (
+                {methods.watch("eduDesignation") === "workingProfessional" && (
                   <>
                     <ForwardedTextInput
                       label="Designation"
@@ -447,11 +447,11 @@ const RegisterForm = () => {
               /> */}
                 <FormControl required sx={{ m: 1, minWidth: 120 }}>
                   <InputLabel id="demo-simple-select-required-label">
-                    Course Detail
+                    Select a Course
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-required-label"
-                    id="demo-simple-select-required"
+                    // id="demo-simple-select-required"
                     placeholder="Select a Course"
                     {...register("coursedetail", {
                       required: "coursedetail is Required",
@@ -459,7 +459,7 @@ const RegisterForm = () => {
                     // error={errors?.coursedetail ? true : false}
                     // helperText={errors?.coursedetail?.message}
                     value={watch("coursedetail") || ""}
-                    label="Course detail"
+                    label="Select a Course"
                   >
                     <MenuItem value="">
                       <em>None</em>

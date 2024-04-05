@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -11,7 +11,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 a {
   font-weight: 500;
@@ -20,6 +20,21 @@ a {
 }
 a:hover {
   color: #535bf2;
+}
+.heading h1 {
+  background-image: linear-gradient(to right, #181f72, rgb(85 17 90 / 71%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.heading h5 {
+  background-image: linear-gradient(to right, #181f72, rgb(85 17 90 / 71%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.personal-detail ::placeholder {
+  color: black;
 }
 
 
