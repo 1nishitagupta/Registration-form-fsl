@@ -29,6 +29,7 @@ const RegisterForm = () => {
   const [formdata, setFormData] = useState([]);
   const [permanentAddress, setPermanentAddress] = useState(false);
   const [open, setOpen] = useState(false);
+  const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState(false);
   const methods = useForm();
   const { handleSubmit, register, watch, formState, setValue, getValues } =
@@ -74,6 +75,9 @@ const RegisterForm = () => {
       alert("first agree to terms and conditions");
     }
     if (currentSection === 4 && confirmation) {
+      const password = PasswordGenerator();
+      data.password = password;
+      console.log(data);
       setFormData(data);
       fetch(`http://localhost:8080/submit`, {
         method: "POST",
@@ -87,6 +91,7 @@ const RegisterForm = () => {
         .catch((err) => console.error("Error:", err));
     }
   });
+  console.log(password);
   console.log(formdata, "58");
   const values = getValues();
   const handleAddress = () => {
@@ -99,6 +104,20 @@ const RegisterForm = () => {
 
   console.log(watch(), "135");
   console.log(methods.watch(), "136");
+
+  function PasswordGenerator() {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+    let newPassword = "";
+    const passwordLength = 10; // You can adjust the length of the password here
+
+    for (let i = 0; i < passwordLength; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      newPassword += characters[randomIndex];
+    }
+
+    return newPassword;
+  }
 
   useEffect(() => {
     if (permanentAddress === true) {
