@@ -1,19 +1,66 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StyledButton from "../components/StyledButton";
 import { useForm } from "react-hook-form";
 import ForwardedTextInput from "../components/StyledTextfield";
 import loginImage from "../assets/logo-round.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const methods = useForm();
+  const Navigate = useNavigate();
   const { handleSubmit, register, formState } = methods;
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const hashvalue = urlSearchParams.get("hash");
+  const email = urlSearchParams.get("email");
+  // const email = "jainsuhani35@gmail.com";
+  console.log(hashvalue, email, "25");
+
   const errors = formState?.errors;
   const handleLogin = handleSubmit((data) => {
-    console.log(data);
+    fetch(`http://localhost:8080/studentLogin`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          Navigate("/resetPassword" , {state:{email : data?.email}});
+        }
+      })
+      .catch((err) => console.error("Error:", err));
   });
+  useEffect(() => {
+    fetch(`http://localhost:8080/getHashValue?email=${email}`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        if (hashvalue !== data?.hashvalue) {
+          console.log("not matched");
+          Navigate("/not-found");
+        }
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  }, []);
+
   return (
     <Box
       sx={{

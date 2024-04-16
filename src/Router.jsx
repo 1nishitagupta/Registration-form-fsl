@@ -47,6 +47,11 @@ const Router = () => {
         },
       ],
     },
+    {
+      // Not Found Route
+      path: "*", // Match any path not matched by previous routes
+      element: <NotFound />,
+    },
   ]);
 
   return (

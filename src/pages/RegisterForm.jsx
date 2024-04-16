@@ -77,7 +77,7 @@ const RegisterForm = () => {
     if (currentSection === 4 && confirmation) {
       const password = PasswordGenerator();
       data.password = password;
-      console.log(data);
+
       setFormData(data);
       fetch(`http://localhost:8080/submit`, {
         method: "POST",
@@ -134,7 +134,7 @@ const RegisterForm = () => {
   useEffect(() => {
     confirmation && setOpen(false);
   }, [open]);
-
+  console.log(permanentAddress, "137");
   return (
     <FormProvider {...methods}>
       <Box
@@ -323,7 +323,7 @@ const RegisterForm = () => {
                 />
                 <FormControlLabel
                   defaultValue={false}
-                  disabled={!watch("local Address")}
+                  disabled={!watch("localAddress")}
                   control={<Switch checked={permanentAddress} />}
                   label="same as local"
                   onChange={handleAddress}
