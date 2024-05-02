@@ -11,18 +11,18 @@ const HeadingBox = ({ heading, onClick, prevIcon }) => {
         padding: "0.75rem 1.25rem ",
         display: "flex",
         justifyContent: "flex-start",
-        alignItems: "flex-start",
+        alignItems: "center",
         gap: "10px",
       }}
     >
       {prevIcon && (
         <Box onClick={onClick} sx={{ cursor: "pointer" }}>
           {" "}
-          <ArrowBackIcon />{" "}
+          <ArrowBackIcon fontSize="large" />{" "}
         </Box>
       )}
 
-      <Typography variant="h5">{heading}</Typography>
+      <Typography variant="h4">{heading}</Typography>
     </Box>
   );
 };

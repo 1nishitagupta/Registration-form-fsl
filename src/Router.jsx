@@ -1,6 +1,7 @@
 import React from "react";
 import RegisterForm from "./pages/RegisterForm";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import MainOutlet from "./layout/Outlet";
 import NotFound from "./Error";
 import Login from "./auth/Login";
 import Forgotpassword from "./auth/ForgotPassword";
@@ -33,7 +34,7 @@ const Router = () => {
 
     {
       path: "/",
-      //   element:
+      element: <MainOutlet />,
       errorElement: <NotFound />,
       children: [
         {

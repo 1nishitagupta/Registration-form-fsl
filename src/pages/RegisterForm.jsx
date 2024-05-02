@@ -79,7 +79,7 @@ const RegisterForm = () => {
       data.password = password;
 
       setFormData(data);
-      fetch(`http://localhost:8080/submit`, {
+      fetch(`http://localhost:8080/student/submit`, {
         method: "POST",
         mode: "cors",
         headers: {
@@ -139,100 +139,171 @@ const RegisterForm = () => {
     <FormProvider {...methods}>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "flex-start",
-          flexDirection: "column",
+          // display: "flex",
+          // justifyContent: "center",
+          // flexDirection: "column",
+          height: "fit-content",
+          // padding: "10px",
         }}
       >
         <form onSubmit={handleSubmit(handleData)} noValidate>
           {currentSection === 1 && (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "flex-start",
-                flexDirection: "column",
-                gap: "10px",
-                border: "1px solid black",
-                padding: "10px",
-              }}
-            >
+            <>
               <HeadingBox heading={"Personal Details"} />
-              <ForwardedTextInput
-                label="Name"
-                type="text"
-                error={errors?.name ? true : false}
-                helperText={errors?.name?.message}
-                placeholder="name"
-                isRequired
-                {...register("name", {
-                  required: "Name is Required",
-                })}
-              />
-              <ForwardedTextInput
-                label="Email"
-                type="text"
-                error={errors?.email ? true : false}
-                helperText={errors?.email?.message}
-                placeholder="email"
-                isRequired
-                {...register("email", {
-                  required: "Email is Required",
-                  validate: {
-                    matchPatern: (value) =>
-                      /^\w+([.-]?\w+)@\w+([.-]?\w+)(\.\w{2,3})+$/.test(value) ||
-                      "Email address must be a valid address",
-                  },
-                })}
-              />
-              <ForwardedTextInput
-                label="Phone No"
-                type="number"
-                error={errors?.phoneNo ? true : false}
-                helperText={errors?.phoneNo?.message}
-                placeholder="phoneNo"
-                isRequired
-                {...register("phoneNo", {
-                  required: "PhoneNo is Required",
-                  validate: {
-                    matchPatern: (value) =>
-                      /^\d{10}$|^(\+\d{1,3}[- ]?)?\d{10}$/.test(value) ||
-                      "PhoneNo must be a valid number",
-                  },
-                })}
-              />
-              <ControlledRadioButtonsGroup
-                label="Gender"
-                name="gender"
-                defaultValue=""
-                data={genderOptions}
-                isRequired={true}
-                rules={{ required: "Please select an option" }}
-              />
-              <ForwardedTextInput
-                label="DOB"
-                type="date"
-                error={errors?.dob ? true : false}
-                helperText={errors?.dob?.message}
-                placeholder="dob"
-                isRequired
-                {...register("dob", {
-                  required: "dob is Required",
-                })}
-              />
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    // flexDirection: "column",
+                    gap: "16px",
+                    // border: "1px solid black",
+                    padding: "10px",
+                    margin: "0 30px",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      // justifyContent: "space-evenly",
+                      // width: "100%",
+                      gap: "4rem",
+                      margin: "20px",
+                    }}
+                  >
+                    <Box>
+                      <ForwardedTextInput
+                        label="Name"
+                        type="text"
+                        error={errors?.name ? true : false}
+                        helperText={errors?.name?.message}
+                        placeholder="name"
+                        width="40rem"
+                        isRequired
+                        {...register("name", {
+                          required: "Name is Required",
+                        })}
+                      />
+                    </Box>
+                    <Box>
+                      <ForwardedTextInput
+                        label="Email"
+                        type="text"
+                        error={errors?.email ? true : false}
+                        helperText={errors?.email?.message}
+                        placeholder="email"
+                        width="40rem"
+                        isRequired
+                        {...register("email", {
+                          required: "Email is Required",
+                          validate: {
+                            matchPatern: (value) =>
+                              /^\w+([.-]?\w+)@\w+([.-]?\w+)(\.\w{2,3})+$/.test(
+                                value
+                              ) || "Email address must be a valid address",
+                          },
+                        })}
+                      />
+                    </Box>
+                  </Box>
+                  <Box sx={{ display: "flex", gap: "4rem" }}>
+                    <Box>
+                      <ForwardedTextInput
+                        width="40rem"
+                        label="Phone No"
+                        type="number"
+                        error={errors?.phoneNo ? true : false}
+                        helperText={errors?.phoneNo?.message}
+                        placeholder="phoneNo"
+                        isRequired
+                        {...register("phoneNo", {
+                          required: "PhoneNo is Required",
+                          validate: {
+                            matchPatern: (value) =>
+                              /^\d{10}$|^(\+\d{1,3}[- ]?)?\d{10}$/.test(
+                                value
+                              ) || "PhoneNo must be a valid number",
+                          },
+                        })}
+                      />
+                    </Box>
+                    {/* <Box>
+                <ControlledRadioButtonsGroup
+                  label="Gender"
+                  name="gender"
+                  defaultValue=""
+                  data={genderOptions}
+                  isRequired={true}
+                  rules={{ required: "Please select an option" }}
+                />
+                </Box> */}
+                    <Box>
+                      <ForwardedTextInput
+                        width="40rem"
+                        label="DOB"
+                        type="date"
+                        error={errors?.dob ? true : false}
+                        helperText={errors?.dob?.message}
+                        placeholder="dob"
+                        isRequired
+                        {...register("dob", {
+                          required: "dob is Required",
+                        })}
+                      />
+                    </Box>
+                  </Box>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "16px",
+                    marginRight: "4.4rem",
+                  }}
+                >
+                  <Box sx={{ marginTop: "1rem" }}>
+                    <ControlledRadioButtonsGroup
+                      label="Gender"
+                      name="gender"
+                      defaultValue=""
+                      data={genderOptions}
+                      isRequired={true}
+                      rules={{ required: "Please select an option" }}
+                    />
+                  </Box>
 
-              <InputFile />
-              <Button
+                  <InputFile />
+                  {/* <Button
                 sx={{ border: "1px solid black" }}
                 onClick={handleNextButton}
               >
                 Next{" "}
-              </Button>
-              <StyledButton
-                label={"Save and next"}
-                onClick={handleData}
-                type={"submit"}
-              />
-            </Box>
+              </Button> */}
+                  <Box
+                    sx={{
+                      marginTop: "20px",
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      width: "100%",
+                    }}
+                  >
+                    <StyledButton
+                      label={"Save and next"}
+                      onClick={handleData}
+                      type={"submit"}
+                    />
+                  </Box>
+                </Box>
+                {/* </Box> */}
+              </Box>
+            </>
           )}
           {/* //Residental Detail */}
           {currentSection === 2 && (

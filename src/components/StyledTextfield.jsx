@@ -19,6 +19,7 @@ const ForwardedTextInput = React.forwardRef(function Textinput(
     onInput,
     error,
     helperText,
+    width,
     sx,
   },
   ref
@@ -49,14 +50,14 @@ const ForwardedTextInput = React.forwardRef(function Textinput(
         flexDirection: "column",
         alignItems: "start",
         gap: "10px",
-        width: "100%",
+        width: width ? width : "100%",
       }}
     >
       {label && (
         <label
           htmlFor={id}
           style={{
-            fontSize: "16px",
+            fontSize: "24px",
             fontWeight: "500",
             letterSpacing: "0.15px",
           }}
@@ -80,7 +81,7 @@ const ForwardedTextInput = React.forwardRef(function Textinput(
           ...sx,
           fontWeight: "400",
           fontSize: "16px",
-          width: "100%",
+          width: width ? width : "100%",
         }}
         InputProps={{
           ...InputProps,
@@ -89,6 +90,7 @@ const ForwardedTextInput = React.forwardRef(function Textinput(
         inputRef={ref}
         error={error}
         helperText={helperText}
+        className="rounded"
       />
     </Box>
   );

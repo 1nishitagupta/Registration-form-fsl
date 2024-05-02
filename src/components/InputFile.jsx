@@ -53,11 +53,12 @@ const InputFile = () => {
         alignItems: "start",
         gap: "10px",
         width: "100%",
+        marginBottom: "10px",
       }}
     >
       <label
         style={{
-          fontSize: "16px",
+          fontSize: "24px",
           fontWeight: "500",
           letterSpacing: "0.15px",
         }}

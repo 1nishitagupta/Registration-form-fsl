@@ -30,7 +30,7 @@ const ControlledRadioButtonsGroup = ({
         <label
           // htmlFor={id}
           style={{
-            fontSize: "16px",
+            fontSize: "24px",
             fontWeight: "500",
             letterSpacing: "0.15px",
           }}

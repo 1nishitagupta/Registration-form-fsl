@@ -19,7 +19,7 @@ function Login() {
 
   const errors = formState?.errors;
   const handleLogin = handleSubmit((data) => {
-    fetch(`http://localhost:8080/studentLogin`, {
+    fetch(`http://localhost:8080/student/studentLogin`, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -30,13 +30,13 @@ function Login() {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          Navigate("/resetPassword" , {state:{email : data?.email}});
+          Navigate("/resetPassword", { state: { email: data?.email } });
         }
       })
       .catch((err) => console.error("Error:", err));
   });
   useEffect(() => {
-    fetch(`http://localhost:8080/getHashValue?email=${email}`, {
+    fetch(`http://localhost:8080/student/getHashValue?email=${email}`, {
       method: "GET",
       mode: "cors",
       headers: {
