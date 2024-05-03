@@ -280,12 +280,12 @@ const RegisterForm = () => {
                   </Box>
 
                   <InputFile />
-                  {/* <Button
-                sx={{ border: "1px solid black" }}
-                onClick={handleNextButton}
-              >
-                Next{" "}
-              </Button> */}
+                  <Button
+                    sx={{ border: "1px solid black" }}
+                    onClick={handleNextButton}
+                  >
+                    Next{" "}
+                  </Button>
                   <Box
                     sx={{
                       marginTop: "20px",
