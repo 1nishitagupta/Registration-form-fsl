@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import RegisterForm from "./pages/RegisterForm";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainOutlet from "./layout/Outlet";
@@ -6,7 +6,6 @@ import NotFound from "./Error";
 import Login from "./auth/Login";
 import Forgotpassword from "./auth/ForgotPassword";
 import Newpassword from "./auth/NewPassword";
-
 import "./index.css";
 import Profile from "./pages/Profile";
 

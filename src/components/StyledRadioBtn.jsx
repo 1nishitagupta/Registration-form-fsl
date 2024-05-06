@@ -46,7 +46,9 @@ const ControlledRadioButtonsGroup = ({
         onBlur={onBlur}
         sx={{ display: "flex", justifyContent: "flex-start" }}
       >
-        <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
+        <Box
+          sx={{ display: "flex", justifyContent: "flex-start", gap: "1rem" }}
+        >
           {data?.map((item, index) => {
             return (
               <FormControlLabel

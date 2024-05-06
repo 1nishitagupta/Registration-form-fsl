@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
+import LogoFSL from "../assets/logo-round.png";
 
 function Header() {
   const [toggle, setToggle] = useState(false);
@@ -42,7 +43,7 @@ function Header() {
         </Box>
       </Box>
 
-      <nav className="py-2 bg-white">
+      <nav className="bg-white">
         <Box
           sx={{
             display: "flex",
@@ -51,13 +52,17 @@ function Header() {
             borderBottom: "1px solid",
           }}
         >
-          <Box sx={{ height: "90px", width: "90px" }}>
+          <Box
+            sx={{
+              height: "90px",
+              width: "90px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <a href="#">
-              <img
-                className="h-full w-full"
-                src="./login-page-logo.png"
-                alt=""
-              />
+              <img className="h-full w-full" src={LogoFSL} alt="" />
             </a>
           </Box>
           <Box

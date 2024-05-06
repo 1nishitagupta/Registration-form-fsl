@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Box, Icon, Typography } from "@mui/material";
 import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -9,6 +10,7 @@ const HeadingBox = ({ heading, onClick, prevIcon }) => {
         backgroundColor: "rgba(0, 0, 0, .03)",
         borderBottom: "1px solid rgba(0,0,0,.125)",
         padding: "0.75rem 1.25rem ",
+        margin: "1rem 0",
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center",
@@ -17,7 +19,6 @@ const HeadingBox = ({ heading, onClick, prevIcon }) => {
     >
       {prevIcon && (
         <Box onClick={onClick} sx={{ cursor: "pointer" }}>
-          {" "}
           <ArrowBackIcon fontSize="large" />{" "}
         </Box>
       )}

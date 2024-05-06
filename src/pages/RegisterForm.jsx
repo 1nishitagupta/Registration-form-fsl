@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Box,
   Button,
@@ -126,184 +127,141 @@ const RegisterForm = () => {
       setValue("permanentAddress", "");
     }
   }, [permanentAddress]);
+
   useEffect(() => {
     methods.setValue("eduDesignation", educationOptions[0].value);
     methods.setValue("analytics", analyticsOptions[0].value);
     // methods.setValue("gender" , )
   }, []);
+
   useEffect(() => {
     confirmation && setOpen(false);
   }, [open]);
+
   console.log(permanentAddress, "137");
   return (
     <FormProvider {...methods}>
       <Box
         sx={{
-          // display: "flex",
+          display: "flex",
+          width: "100%",
           // justifyContent: "center",
           // flexDirection: "column",
           height: "fit-content",
           // padding: "10px",
+          maxWidth: "1500px",
+          margin: "auto",
+          padding: "0 20px",
         }}
       >
-        <form onSubmit={handleSubmit(handleData)} noValidate>
+        <form
+          style={{ width: "100%" }}
+          onSubmit={handleSubmit(handleData)}
+          noValidate
+        >
           {currentSection === 1 && (
-            <>
+            <Box sx={{}}>
               <HeadingBox heading={"Personal Details"} />
               <Box
                 sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  flexWrap: "wrap",
+                  display: "grid",
+
+                  gridTemplateColumns: "1fr 1fr", // Two columns
+                  gap: "20px",
+                  "@media screen and (max-width: 768px)": {
+                    gridTemplateColumns: "1fr", // On smaller screens, switch to single column
+                  },
                 }}
               >
                 <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    // flexDirection: "column",
-                    gap: "16px",
-                    // border: "1px solid black",
-                    padding: "10px",
-                    margin: "0 30px",
-                    flexWrap: "wrap",
-                  }}
+                  sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
                 >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      // justifyContent: "space-evenly",
-                      // width: "100%",
-                      gap: "4rem",
-                      margin: "20px",
-                    }}
-                  >
-                    <Box>
-                      <ForwardedTextInput
-                        label="Name"
-                        type="text"
-                        error={errors?.name ? true : false}
-                        helperText={errors?.name?.message}
-                        placeholder="name"
-                        width="40rem"
-                        isRequired
-                        {...register("name", {
-                          required: "Name is Required",
-                        })}
-                      />
-                    </Box>
-                    <Box>
-                      <ForwardedTextInput
-                        label="Email"
-                        type="text"
-                        error={errors?.email ? true : false}
-                        helperText={errors?.email?.message}
-                        placeholder="email"
-                        width="40rem"
-                        isRequired
-                        {...register("email", {
-                          required: "Email is Required",
-                          validate: {
-                            matchPatern: (value) =>
-                              /^\w+([.-]?\w+)@\w+([.-]?\w+)(\.\w{2,3})+$/.test(
-                                value
-                              ) || "Email address must be a valid address",
-                          },
-                        })}
-                      />
-                    </Box>
-                  </Box>
-                  <Box sx={{ display: "flex", gap: "4rem" }}>
-                    <Box>
-                      <ForwardedTextInput
-                        width="40rem"
-                        label="Phone No"
-                        type="number"
-                        error={errors?.phoneNo ? true : false}
-                        helperText={errors?.phoneNo?.message}
-                        placeholder="phoneNo"
-                        isRequired
-                        {...register("phoneNo", {
-                          required: "PhoneNo is Required",
-                          validate: {
-                            matchPatern: (value) =>
-                              /^\d{10}$|^(\+\d{1,3}[- ]?)?\d{10}$/.test(
-                                value
-                              ) || "PhoneNo must be a valid number",
-                          },
-                        })}
-                      />
-                    </Box>
-                    {/* <Box>
-                <ControlledRadioButtonsGroup
-                  label="Gender"
-                  name="gender"
-                  defaultValue=""
-                  data={genderOptions}
-                  isRequired={true}
-                  rules={{ required: "Please select an option" }}
-                />
-                </Box> */}
-                    <Box>
-                      <ForwardedTextInput
-                        width="40rem"
-                        label="DOB"
-                        type="date"
-                        error={errors?.dob ? true : false}
-                        helperText={errors?.dob?.message}
-                        placeholder="dob"
-                        isRequired
-                        {...register("dob", {
-                          required: "dob is Required",
-                        })}
-                      />
-                    </Box>
-                  </Box>
+                  <ForwardedTextInput
+                    label="Name"
+                    type="text"
+                    error={errors?.name ? true : false}
+                    helperText={errors?.name?.message}
+                    placeholder="Name"
+                    isRequired
+                    {...register("name", {
+                      required: "Name is Required",
+                    })}
+                  />
+                  <ForwardedTextInput
+                    label="Email"
+                    type="text"
+                    error={errors?.email ? true : false}
+                    helperText={errors?.email?.message}
+                    placeholder="Email"
+                    isRequired
+                    {...register("email", {
+                      required: "Email is Required",
+                      validate: {
+                        matchPattern: (value) =>
+                          /^\w+([.-]?\w+)@\w+([.-]?\w+)(\.\w{2,3})+$/.test(
+                            value
+                          ) || "Email address must be valid",
+                      },
+                    })}
+                  />
                 </Box>
                 <Box
-                  sx={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: "16px",
-                    marginRight: "4.4rem",
-                  }}
+                  sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
                 >
-                  <Box sx={{ marginTop: "1rem" }}>
-                    <ControlledRadioButtonsGroup
-                      label="Gender"
-                      name="gender"
-                      defaultValue=""
-                      data={genderOptions}
-                      isRequired={true}
-                      rules={{ required: "Please select an option" }}
-                    />
-                  </Box>
+                  <ForwardedTextInput
+                    label="Phone No"
+                    type="tel"
+                    error={errors?.phoneNo ? true : false}
+                    helperText={errors?.phoneNo?.message}
+                    placeholder="Phone No"
+                    isRequired
+                    {...register("phoneNo", {
+                      required: "Phone No is Required",
+                      validate: {
+                        matchPattern: (value) =>
+                          /^\d{10}$|^(\+\d{1,3}[- ]?)?\d{10}$/.test(value) ||
+                          "Phone No must be a valid number",
+                      },
+                    })}
+                  />
+                  <ForwardedTextInput
+                    label="DOB"
+                    type="date"
+                    error={errors?.dob ? true : false}
+                    helperText={errors?.dob?.message}
+                    placeholder="DOB"
+                    isRequired
+                    {...register("dob", {
+                      required: "DOB is Required",
+                    })}
+                  />
+                </Box>
+              </Box>
 
+              <Box sx={{ margin: "1rem 0" }}>
+                <Box
+                  sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+                >
+                  <ControlledRadioButtonsGroup
+                    label="Gender"
+                    name="gender"
+                    defaultValue=""
+                    data={genderOptions}
+                    isRequired={true}
+                    rules={{ required: "Please select an option" }}
+                  />
                   <InputFile />
-                  <Button
-                    sx={{ border: "1px solid black" }}
-                    onClick={handleNextButton}
-                  >
-                    Next{" "}
-                  </Button>
-                  <Box
-                    sx={{
-                      marginTop: "20px",
-                      display: "flex",
-                      justifyContent: "flex-end",
-                      width: "100%",
-                    }}
-                  >
+                  <Button onClick={handleNextButton}>Next</Button>
+                  <Box sx={{ marginTop: "20px", textAlign: "right" }}>
                     <StyledButton
-                      label={"Save and next"}
+                      label={"Save and Next"}
                       onClick={handleData}
                       type={"submit"}
                     />
                   </Box>
                 </Box>
-                {/* </Box> */}
               </Box>
-            </>
+            </Box>
           )}
           {/* //Residental Detail */}
           {currentSection === 2 && (
