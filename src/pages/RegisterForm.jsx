@@ -271,7 +271,7 @@ const RegisterForm = () => {
                 justifyContent: "flex-start",
                 flexDirection: "column",
                 gap: "10px",
-                border: "1px solid black",
+                // border: "1px solid black",
                 padding: "10px",
               }}
             >
@@ -304,7 +304,7 @@ const RegisterForm = () => {
               />
 
               <Button
-                sx={{ border: "1px solid black" }}
+                // sx={{ border: "1px solid black" }}
                 onClick={handleNextButton}
               >
                 Next{" "}
@@ -326,7 +326,7 @@ const RegisterForm = () => {
                   justifyContent: "flex-start",
                   flexDirection: "column",
                   gap: "10px",
-                  border: "1px solid black",
+                  // border: "1px solid black",
                   padding: "10px",
                 }}
               >
@@ -390,7 +390,7 @@ const RegisterForm = () => {
                   justifyContent: "flex-start",
                   flexDirection: "column",
                   gap: "10px",
-                  border: "1px solid black",
+                  // border: "1px solid black",
                   padding: "10px",
                   marginBottom: "10px",
                 }}
